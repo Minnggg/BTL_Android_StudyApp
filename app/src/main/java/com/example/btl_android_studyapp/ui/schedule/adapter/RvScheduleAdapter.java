@@ -41,6 +41,7 @@ public class RvScheduleAdapter extends RecyclerView.Adapter<RvScheduleAdapter.Sc
         DsThoiKhoaBieu subject = subjectList.get(position);
 
         TextView gioHoc = holder.itemView.findViewById(R.id.gioHoc);
+        TextView ngayHoc = holder.itemView.findViewById(R.id.ngayHoc);
         TextView tenMon = holder.itemView.findViewById(R.id.tenMon);
         TextView phongHoc = holder.itemView.findViewById(R.id.phongHoc);
         TextView tenGiangVien = holder.itemView.findViewById(R.id.tenGiangVien);
@@ -60,6 +61,7 @@ public class RvScheduleAdapter extends RecyclerView.Adapter<RvScheduleAdapter.Sc
                 tietHoc.get(Math.min(tietBatDau - 1 + soTiet, tietHoc.size() - 1)); // prevent IndexOutOfBounds
         gioHoc.setText(timeRange);
 
+        ngayHoc.setText(subject.getNgay_hoc().replace("T00:00:00",""));
         tenMon.setText(subject.getTen_mon());
 
         // Extracting room

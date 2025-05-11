@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.btl_android_studyapp.ui.notifications.NotificationsFragment"
+        android:name="com.example.btl_android_studyapp.ui.option.OptionFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

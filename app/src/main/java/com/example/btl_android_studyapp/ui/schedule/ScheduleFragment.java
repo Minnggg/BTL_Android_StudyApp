@@ -92,7 +92,9 @@ public class ScheduleFragment extends Fragment implements CalendarAdapter.OnItem
                     }
                 }
                 adapter.setDay(LocalDate.now().getDayOfMonth()-1);
-                binding.recyclerViewCalendar.scrollToPosition(adapter.getAdapterPosition());
+                if (binding != null && binding.recyclerViewCalendar != null && adapter != null) {
+                    binding.recyclerViewCalendar.scrollToPosition(adapter.getAdapterPosition());
+                }
             }
 
             @Override
@@ -103,6 +105,7 @@ public class ScheduleFragment extends Fragment implements CalendarAdapter.OnItem
     }
 
     void displaySchedule(String day) {
+        if (binding == null) return;
         ArrayList<DsThoiKhoaBieu> tkbSelected = (ArrayList<DsThoiKhoaBieu>) subjectList.stream().filter(item -> item.getNgay_hoc().equals(day)).collect(Collectors.toList());
 
         RvScheduleAdapter rvScheduleAdapter = new RvScheduleAdapter(tkbSelected);

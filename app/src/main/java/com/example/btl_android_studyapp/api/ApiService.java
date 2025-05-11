@@ -23,5 +23,6 @@ public interface ApiService {
     @POST("sch/w-locdstkbtuanusertheohocky")
     Call<ThoiKhoaBieuResponse> getSchedule(@Body Map<String, Object> body, @Header("Authorization") String token);
 
-
+    @POST("srm/w-locdsdiemsinhvien?hien_thi_mon_theo_hkdk=false")
+    Call<Object> getAllPoint ( @Header("Authorization") String token);
 }
