@@ -1,4 +1,5 @@
 package com.example.btl_android_studyapp.api;
+import com.example.btl_android_studyapp.model.ScoreResponse;
 import com.example.btl_android_studyapp.model.ThoiKhoaBieuResponse;
 import com.example.btl_android_studyapp.model.UserModel;
 
@@ -23,6 +24,6 @@ public interface ApiService {
     @POST("sch/w-locdstkbtuanusertheohocky")
     Call<ThoiKhoaBieuResponse> getSchedule(@Body Map<String, Object> body, @Header("Authorization") String token);
 
-    @POST("srm/w-locdsdiemsinhvien?hien_thi_mon_theo_hkdk=false")
-    Call<Object> getAllPoint ( @Header("Authorization") String token);
+    @POST("srm/w-locdsdiemsinhvien")
+    Call<ScoreResponse> getAllPoint (@Header("Authorization") String token);
 }

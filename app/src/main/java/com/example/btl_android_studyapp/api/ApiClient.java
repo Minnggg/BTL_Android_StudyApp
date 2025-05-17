@@ -2,6 +2,7 @@ package com.example.btl_android_studyapp.api;
 
 import android.util.Log;
 
+import com.example.btl_android_studyapp.Contanst;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -14,6 +15,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
@@ -53,6 +55,15 @@ public class ApiClient {
                         Log.d("RAW_JSON", rawJson);
                         ResponseBody newBody = ResponseBody.create(rawJson, response.body().contentType());
                         return response.newBuilder().body(newBody).build();
+                    })
+                    .addInterceptor(chain -> {
+                        Request original = chain.request();
+                        Request.Builder requestBuilder = original.newBuilder();
+                        if (Contanst.userCurrent != null) {
+                            requestBuilder.header("Authorization", "Bearer " + Contanst.userCurrent.getAccess_token());
+                        }
+                        Request request = requestBuilder.build();
+                        return chain.proceed(request);
                     })
                     .build();
         } catch (NoSuchAlgorithmException | KeyManagementException e) {

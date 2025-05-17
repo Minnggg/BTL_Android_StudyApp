@@ -9,58 +9,69 @@
         android:layout_height="fill_parent"
         android:layout_weight="1"
         android:scrollbarThumbVertical="@null">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/avatarImageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginStart="27dp"
-                android:layout_marginTop="16dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/avt_lf"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:shapeAppearanceOverlay="@style/RoundedImageView" />
-            <LinearLayout
-                android:gravity="center"
-                app:layout_constraintLeft_toRightOf="@id/avatarImageView"
-                app:layout_constraintBottom_toBottomOf="@id/avatarImageView"
-                app:layout_constraintTop_toTopOf="@id/avatarImageView"
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/avatarImageView"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/avt_lf"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/RoundedImageView" />
+                <LinearLayout
+                    android:gravity="center"
+                    app:layout_constraintLeft_toRightOf="@id/avatarImageView"
+                    app:layout_constraintBottom_toBottomOf="@id/avatarImageView"
+                    app:layout_constraintTop_toTopOf="@id/avatarImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:lines="2"
+                        android:id="@+id/tvNameStudent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Phan Ngọc Minh"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@+id/avatarImageView"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/premiumChip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="0dp"
+                        android:text="Premium"
+                        android:textColor="#FFF"
+                        android:textSize="@dimen/_9ssp"
+                        app:chipBackgroundColor="#FFB800"
+                        app:chipCornerRadius="12dp"
+                        app:chipEndPadding="@dimen/_1sdp"
+                        app:chipIcon="@null"
+                        app:chipStartPadding="@dimen/_1sdp"
+                        app:chipStrokeWidth="0dp"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <Button
+                android:id="@+id/btnGoToScoreTable"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
-                <TextView
-                    android:lines="2"
-                    android:id="@+id/tvNameStudent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:text="Phan Ngọc Minh"
-                    android:textSize="@dimen/_13ssp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@+id/avatarImageView"
-                    app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content"
+                android:text="Diem"/>
+        </LinearLayout>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/premiumChip"
-                    android:layout_width="wrap_content"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="0dp"
-                    android:text="Premium"
-                    android:textColor="#FFF"
-                    android:textSize="@dimen/_9ssp"
-                    app:chipBackgroundColor="#FFB800"
-                    app:chipCornerRadius="12dp"
-                    app:chipEndPadding="@dimen/_1sdp"
-                    app:chipIcon="@null"
-                    app:chipStartPadding="@dimen/_1sdp"
-                    app:chipStrokeWidth="0dp"/>
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>
