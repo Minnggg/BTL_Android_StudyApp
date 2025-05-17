@@ -71,6 +71,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Diem"/>
+
+            <Button
+                android:id="@+id/btnGoToNoteScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note"/>
+
         </LinearLayout>
 
     </ScrollView>
