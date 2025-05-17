@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.btl_android_studyapp.Contanst;
 import com.example.btl_android_studyapp.ScoreTableActivity;
+import com.example.btl_android_studyapp.ToDoScreen;
 import com.example.btl_android_studyapp.databinding.FragmentNotificationsBinding;
 
 public class OptionFragment extends Fragment {
@@ -34,6 +35,13 @@ public class OptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), ScoreTableActivity.class));
+            }
+        });
+
+        binding.btnGoToScreenToDo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ToDoScreen.class));
             }
         });
     }
