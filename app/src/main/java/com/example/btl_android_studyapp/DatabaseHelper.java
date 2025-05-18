@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.btl_android_studyapp.model.Note;
+import com.example.btl_android_studyapp.model.Todo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_TODO_DUE_DATE = "due_date";
     public static final String COLUMN_TODO_NOTE_ID = "note_id";
 
-    public static final String TABLE_NAME = "notes";
+    public static final String TABLE_NOTE = "notes";
     public static final String COLUMN_ID = "id";
     public static final String COLUMN_USER_ID = "user_id";
     public static final String COLUMN_TITLE = "title";
@@ -48,20 +49,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_TODO_IS_DONE + " INTEGER,"
                 + COLUMN_TODO_DUE_DATE + " TEXT,"
                 + COLUMN_TODO_NOTE_ID + " INTEGER)";
-        db.execSQL(createTodosTable);
-        String createTableNotes = "CREATE TABLE " + TABLE_NAME + "(" +
+        String createTableNotes = "CREATE TABLE " + TABLE_NOTE + "(" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COLUMN_USER_ID + " TEXT," +
                 COLUMN_TITLE + " TEXT," +
                 COLUMN_CONTENT + " TEXT," +
                 COLUMN_CREATED_AT + " TEXT)";
         db.execSQL(createTableNotes);
+        db.execSQL(createTodosTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODOS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NOTE);
         onCreate(db);
     }
 
@@ -77,69 +78,89 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public List<Todo> getTodosByUserId(String userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
         List<Todo> list = new ArrayList<>();
+        Cursor cursor = db.query(TABLE_TODOS, null, COLUMN_TODO_USER_ID + " = ?",
+                new String[]{userId}, null, null, COLUMN_TODO_DUE_DATE + " ASC");
+
+
+        if (cursor.moveToFirst()) {
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TODO_ID));
+                    String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TODO_TITLE));
+                    boolean isDone = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TODO_IS_DONE)) == 1;
+                    String dueDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TODO_DUE_DATE));
+                    long noteId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TODO_NOTE_ID));
+
+                    list.add(new Todo(id, userId, title, isDone, dueDate, noteId));
+                } while (cursor.moveToNext());
+                cursor.close();
+            }
+        }
+        return list;
+    }
     // READ BY USER_ID
     public List<Note> getNotesByUserId(String userId) {
         List<Note> noteList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_TODOS, null, COLUMN_TODO_USER_ID + " = ?",
-                new String[]{userId}, null, null, COLUMN_TODO_DUE_DATE + " ASC");
-        Cursor cursor = db.query(TABLE_NAME, null,
+
+        Cursor cursor = db.query(TABLE_NOTE, null,
                 COLUMN_USER_ID + " = ?", new String[]{userId},
                 null, null, COLUMN_CREATED_AT + " DESC");
 
         if (cursor.moveToFirst()) {
-        if (cursor != null && cursor.moveToFirst()) {
-            do {
-                long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TODO_ID));
-                String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TODO_TITLE));
-                boolean isDone = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_TODO_IS_DONE)) == 1;
-                String dueDate = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TODO_DUE_DATE));
-                long noteId = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_TODO_NOTE_ID));
-                long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
-                String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
-                String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
-                String createdAt = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATED_AT));
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID));
+                    String title = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE));
+                    String content = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CONTENT));
+                    String createdAt = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATED_AT));
 
-                list.add(new Todo(id, userId, title, isDone, dueDate, noteId));
-                noteList.add(new Note(id, userId, title, content, createdAt));
-            } while (cursor.moveToNext());
-            cursor.close();
+                    noteList.add(new Note(id, userId, title, content, createdAt));
+                } while (cursor.moveToNext());
+                cursor.close();
+            }
         }
-        return list;
+        return noteList;
     }
 
     public int updateTodoById(Todo todo) {
-        return noteList;
-    }
-    // UPDATE NOTE BY ID
-    public int updateNoteById(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TODO_TITLE, todo.getTitle());
         values.put(COLUMN_TODO_IS_DONE, todo.isDone() ? 1 : 0);
         values.put(COLUMN_TODO_DUE_DATE, todo.getDueDate());
         values.put(COLUMN_TODO_NOTE_ID, todo.getNoteId());
+        return db.update(TABLE_TODOS, values, COLUMN_TODO_ID + " = ?",
+                new String[]{String.valueOf(todo.getId())});
+    }
+    public int updateNoteById(Note note) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, note.getTitle());
         values.put(COLUMN_CONTENT, note.getContent());
         values.put(COLUMN_CREATED_AT, note.getCreatedAt());
 
-        return db.update(TABLE_TODOS, values, COLUMN_TODO_ID + " = ?",
-                new String[]{String.valueOf(todo.getId())});
-        return db.update(TABLE_NAME, values,
+        return db.update(TABLE_NOTE, values,
                 COLUMN_ID + " = ?",
                 new String[]{String.valueOf(note.getId())});
     }
 
     public int deleteTodoById(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_TODOS, COLUMN_TODO_ID + " = ?",
+                new String[]{String.valueOf(id)});
+    }
     // DELETE NOTE BY ID
     public int deleteNoteById(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(TABLE_TODOS, COLUMN_TODO_ID + " = ?",
-        return db.delete(TABLE_NAME,
+        return db.delete(TABLE_NOTE,
                 COLUMN_ID + " = ?",
                 new String[]{String.valueOf(id)});
     }
+
     // ADD NEW NOTE
     public long addNote(Note note) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -149,6 +170,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COLUMN_CONTENT, note.getContent());
         values.put(COLUMN_CREATED_AT, note.getCreatedAt());
 
-        return db.insert(TABLE_NAME, null, values); // trả về ID mới hoặc -1 nếu lỗi
+        return db.insert(TABLE_NOTE, null, values); // trả về ID mới hoặc -1 nếu lỗi
     }
 }
