@@ -84,6 +84,11 @@
                 android:layout_height="wrap_content"
                 android:text="Note"/>
 
+            <Button
+                android:id="@+id/btnGoToChatBotScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ChatBot"/>
         </LinearLayout>
 
     </ScrollView>

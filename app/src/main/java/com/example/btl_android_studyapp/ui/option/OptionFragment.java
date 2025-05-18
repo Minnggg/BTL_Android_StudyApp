@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.btl_android_studyapp.ChatbotActivity;
 import com.example.btl_android_studyapp.Contanst;
 import com.example.btl_android_studyapp.NoteScreen;
 import com.example.btl_android_studyapp.ScoreTableActivity;
@@ -46,6 +48,13 @@ public class OptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), NoteScreen.class));
+            }
+        });
+
+        binding.btnGoToChatBotScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), ChatbotActivity.class));
             }
         });
     }
