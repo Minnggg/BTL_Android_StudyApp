@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "752793453188",
+    "project_id": "btl-android-appstudy",
+    "storage_bucket": "btl-android-appstudy.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752793453188:android:7922e379da7692665938d1",
+        "android_client_info": {
+          "package_name": "com.example.btl_android_studyapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXwzwwSGmYIG7qY31KK-IDZl9WTepbxpw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
