@@ -20,6 +20,9 @@
             android:name=".ToDoScreen"
             android:exported="false" />
         <activity
+            android:name=".NoteScreen"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:exported="false" />
         <activity

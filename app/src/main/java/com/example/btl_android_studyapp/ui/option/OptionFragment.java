@@ -5,14 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.example.btl_android_studyapp.Contanst;
+import com.example.btl_android_studyapp.NoteScreen;
 import com.example.btl_android_studyapp.ScoreTableActivity;
 import com.example.btl_android_studyapp.ToDoScreen;
 import com.example.btl_android_studyapp.databinding.FragmentNotificationsBinding;
@@ -42,6 +39,13 @@ public class OptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), ToDoScreen.class));
+            }
+        });
+
+        binding.btnGoToNoteScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), NoteScreen.class));
             }
         });
     }
