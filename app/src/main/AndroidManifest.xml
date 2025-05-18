@@ -24,13 +24,7 @@
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ScoreTableActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LogInActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,15 +32,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LetStartActivity"
+            android:name=".ScoreTableActivity"
             android:exported="false" />
+        <activity
+            android:name=".LogInActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".LetStartActivity"
+            android:exported="false" >
+        </activity>
         <activity
             android:name=".ChatbotActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"></activity>
+            android:exported="false" />
 
         <service android:name=".firebase.FirebaseNotification"
             android:exported="false">
