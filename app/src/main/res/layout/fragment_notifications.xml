@@ -2,17 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ac_card_radius_border"
+
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:scrollbarThumbVertical="@null">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -66,23 +67,220 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/btnGoToScoreTable"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Diem"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+                <!--                thông tin chi tiết-->
+                <LinearLayout
+                    android:id="@+id/btnGoToScoreTable"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                         />
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="Thông tin điểm"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+                <!--                cài đặt-->
+                <LinearLayout
+                    android:id="@+id/btnGoToScreenToDo"
 
-            <Button
-                android:id="@+id/btnGoToScreenToDo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="To do"/>
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btnGoToNoteScreen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Note"/>
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                         />
+
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="To do"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:foregroundGravity=""
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+
+                <!--                cài đặt-->
+                <LinearLayout
+                    android:id="@+id/btnGoToNoteScreen"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        />
+
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="Note"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:foregroundGravity=""
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+                <!--                đường kẻ -->
+                <View
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="1dp"
+                    android:background="#DCDCDC" />
+
+                <!--Privacy & Security-->
+                <LinearLayout
+                    android:id="@+id/baomat"
+
+                    android:layout_marginTop="@dimen/_20sdp"
+
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                         />
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="Privacy &amp; Security"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+                <!--                help-->
+
+                <LinearLayout
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:id="@+id/help"
+
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                         />
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="Help"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+
+                <!--                đường kẻ -->
+                <View
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="1dp"
+                    android:background="#DCDCDC" />
+
+
+                <!--                đăng xuất-->
+                <LinearLayout
+                    android:id="@+id/dangxuat"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:weightSum="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:layout_weight="2"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/ic_logout" />
+                    <TextView
+                        android:layout_weight="7"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:lineHeight="@dimen/_30sdp"
+                        android:text="Đăng xuất"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold" />
+                    <ImageButton
+                        android:layout_weight="1"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/ic_btn_goto" />
+                </LinearLayout>
+            </LinearLayout>
 
         </LinearLayout>
 
