@@ -71,9 +71,9 @@ public class NoteScreen extends AppCompatActivity implements NoteAdapter.onLongC
         edtNoteTitle.setText(note.getTitle());
         builder.setPositiveButton("Lưu", (dialog, which) -> {
             String newContent = edtContent.getText().toString().trim();
-            String title = edtNoteTitle.getText().toString().trim();
+            String newTitle = edtNoteTitle.getText().toString().trim();
 
-            if (!newContent.isEmpty() && !title.isEmpty()) {
+            if (!newContent.isEmpty() && !newTitle.isEmpty()) {
                 note.setContent(newContent);
                 note.setCreatedAt(new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date()));
                 db.updateNoteById(note);

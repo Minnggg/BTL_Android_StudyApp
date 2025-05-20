@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.example.btl_android_studyapp.ChatbotActivity;
 import com.example.btl_android_studyapp.Contanst;
 import com.example.btl_android_studyapp.NoteScreen;
+import com.example.btl_android_studyapp.PomodoroScreen;
 import com.example.btl_android_studyapp.ScoreTableActivity;
 import com.example.btl_android_studyapp.ToDoScreen;
 import com.example.btl_android_studyapp.databinding.FragmentNotificationsBinding;
@@ -55,6 +56,13 @@ public class OptionFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), ChatbotActivity.class));
+            }
+        });
+
+        binding.btnGoToPomodoroScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PomodoroScreen.class));
             }
         });
     }
