@@ -57,7 +57,8 @@ public class ToDoScreen extends AppCompatActivity {
 
             @Override
             public void onStatusChanged(Todo todo, boolean isDone) {
-
+                todo.setDone(isDone);
+                db.updateTodoById(todo);
             }
         });
         rvListTodo.setAdapter(todoAdapter);

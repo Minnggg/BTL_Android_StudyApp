@@ -25,6 +25,7 @@ public class PomodoroScreen extends AppCompatActivity {
     ActivityPomodoroScreenBinding binding;
     private CountDownTimer countdownTimer;
     private final long learnTime = 1500000;
+    // private final long learnTime = 5000;
     private long breakTime = 300000;
     private long timeLeftInMillis = learnTime;
     private long totalTime = learnTime;
